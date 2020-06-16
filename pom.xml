@@ -17,6 +17,8 @@
         <module>entity</module>
         <module>mapper</module>
         <module>service</module>
+        <module>controller</module>
+        <module>winsim-starter</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
@@ -155,8 +157,12 @@
                     </executions>
                 </plugin>
             </plugins>
+
         </pluginManagement>
+
+
     </build>
+
 
     <repositories>
         <repository>
@@ -182,5 +188,11 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <distributionManagement>
+        <repository>
+            <id>local-repo-release</id>
+            <name>GitHub Release</name>
+            <url>file://${project.basedir}/../mvn-repository</url>
+        </repository>
+    </distributionManagement>
 </project>

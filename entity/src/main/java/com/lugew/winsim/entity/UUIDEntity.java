@@ -1,9 +1,9 @@
 package com.lugew.winsim.entity;
 
-import com.newsense.reviewonline.entity.validator.Add;
-import com.newsense.reviewonline.entity.validator.Delete;
-import com.newsense.reviewonline.entity.validator.Update;
-import com.newsense.reviewonline.util.UUIDGenerator;
+import com.lugew.winsim.entity.validator.Add;
+import com.lugew.winsim.entity.validator.Delete;
+import com.lugew.winsim.entity.validator.Update;
+import com.lugew.winsim.util.UUIDGenerator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import tk.mybatis.mapper.annotation.KeySql;
@@ -18,7 +18,7 @@ import javax.validation.constraints.Null;
  * @author LuGew
  */
 @ApiModel
-public class UUIDEntity extends com.newsense.reviewonline.entity.ModifiableEntity<String> {
+public class UUIDEntity extends ModifiableEntity<String> {
     @Id
     @KeySql(genId = UUIDGenerator.class)
     @ApiModelProperty(value = "uuid", example = "uuid")
