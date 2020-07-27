@@ -8,7 +8,7 @@ import com.lugew.winsim.entity.validator.Add;
 import com.lugew.winsim.entity.validator.Update;
 import com.lugew.winsim.service.Service;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
  *
  * @author LuGew
  */
+@RequiredArgsConstructor
 public abstract class AbstractController<T extends Entity<?>, I extends Service<T>> implements Controller<T> {
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-    @Autowired
-    protected I service;
+    protected final I service;
+
 
     @Override
     @ApiOperation(value = "列表")

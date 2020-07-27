@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.lugew.winsim.entity.Entity;
 import com.lugew.winsim.mapper.Mapper;
 import com.lugew.winsim.util.LocalDateTimeUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -14,11 +14,10 @@ import java.util.List;
  *
  * @author LuGew
  */
+@RequiredArgsConstructor
 public abstract class AbstractService<T extends Entity<?>, I extends Mapper<T>> implements Service<T> {
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-    @Autowired
-    protected I mapper;
+    protected final I mapper;
 
     private void preInsert(T entity) {
         entity.setCreator(getCurrentUserId());
