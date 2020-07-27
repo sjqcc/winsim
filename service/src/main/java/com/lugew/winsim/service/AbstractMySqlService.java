@@ -15,9 +15,6 @@ public abstract class AbstractMySqlService<T extends Entity<?>, I extends MySqlM
         extends AbstractService<T, I>
         implements MySqlService<T> {
 
-    public AbstractMySqlService(I mapper) {
-        super(mapper);
-    }
 
     @Override
     public int insertList(List<? extends T> recordList) {

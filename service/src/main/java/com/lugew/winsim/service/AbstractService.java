@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.lugew.winsim.entity.Entity;
 import com.lugew.winsim.mapper.Mapper;
 import com.lugew.winsim.util.LocalDateTimeUtil;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -14,10 +13,13 @@ import java.util.List;
  *
  * @author LuGew
  */
-@RequiredArgsConstructor
 public abstract class AbstractService<T extends Entity<?>, I extends Mapper<T>> implements Service<T> {
 
-    protected final I mapper;
+    protected I mapper;
+
+    public void setMapper(I mapper) {
+        this.mapper = mapper;
+    }
 
     private void preInsert(T entity) {
         entity.setCreator(getCurrentUserId());

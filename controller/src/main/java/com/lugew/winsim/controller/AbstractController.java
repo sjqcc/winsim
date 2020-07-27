@@ -8,7 +8,6 @@ import com.lugew.winsim.entity.validator.Add;
 import com.lugew.winsim.entity.validator.Update;
 import com.lugew.winsim.service.Service;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
  *
  * @author LuGew
  */
-@RequiredArgsConstructor
 public abstract class AbstractController<T extends Entity<?>, I extends Service<T>> implements Controller<T> {
 
-    protected final I service;
+    protected I service;
 
+    public void setService(I service) {
+        this.service = service;
+    }
 
     @Override
     @ApiOperation(value = "列表")
