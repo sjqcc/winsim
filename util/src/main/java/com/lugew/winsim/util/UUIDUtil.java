@@ -2,7 +2,7 @@ package com.lugew.winsim.util;
 
 import java.util.UUID;
 
-public class UUIDUtils {
+public class UUIDUtil {
 
 
     /**
