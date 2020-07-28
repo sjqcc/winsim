@@ -5,10 +5,10 @@
     <parent>
         <groupId>com.lugew.winsim</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.0-RELEASE</version>
+        <version>1.0.1-RELEASE</version>
     </parent>
     <artifactId>util</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1-RELEASE</version>
     <name>util</name>
     <description>工具</description>
 

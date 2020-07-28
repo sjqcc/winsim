@@ -5,7 +5,7 @@
 
     <groupId>com.lugew.winsim</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1-RELEASE</version>
     <packaging>pom</packaging>
 
     <name>winsim</name>
@@ -22,6 +22,7 @@
         <module>winsim-starter</module>
     </modules>
     <properties>
+        <winsim.version>1.0.1.RELEASE</winsim.version>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -213,7 +214,6 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <aggregate>true</aggregate>
                             <javadocExecutable>${env.JAVA_HOME}/bin/javadoc</javadocExecutable>
                         </configuration>
                     </plugin>
