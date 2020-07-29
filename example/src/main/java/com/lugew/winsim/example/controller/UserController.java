@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController extends AbstractController<User, UserService> {
     @PostMapping("test")
     public ResponseEntity<?> test(@RequestBody User entity) {
-        service.updateNotNull(entity);
-        return ok();
+        return ok(service.getOne(entity));
     }
 }
