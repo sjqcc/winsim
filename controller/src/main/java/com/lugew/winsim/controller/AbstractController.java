@@ -8,6 +8,7 @@ import com.lugew.winsim.entity.validator.Add;
 import com.lugew.winsim.entity.validator.Update;
 import com.lugew.winsim.service.Service;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public abstract class AbstractController<T extends Entity<?>, I extends Service<
 
     protected I service;
 
+    @Autowired
     public void setService(I service) {
         this.service = service;
     }

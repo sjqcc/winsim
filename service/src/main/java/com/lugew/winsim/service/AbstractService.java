@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.lugew.winsim.entity.Entity;
 import com.lugew.winsim.mapper.Mapper;
 import com.lugew.winsim.util.LocalDateTimeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public abstract class AbstractService<T extends Entity<?>, I extends Mapper<T>> 
 
     protected I mapper;
 
+    @Autowired
     public void setMapper(I mapper) {
         this.mapper = mapper;
     }

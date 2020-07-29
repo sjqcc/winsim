@@ -20,6 +20,7 @@
         <module>service</module>
         <module>controller</module>
         <module>winsim-starter</module>
+        <module>example</module>
     </modules>
     <properties>
         <winsim.version>1.0.1.RELEASE</winsim.version>
