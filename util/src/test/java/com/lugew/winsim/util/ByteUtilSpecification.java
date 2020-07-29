@@ -9,7 +9,7 @@ class ByteUtilSpecification {
 
     @Test
     void givenArithmeticMoveRightWhenNegative112MoveRight4ThenReturn9() {
-        assertThat(ByteUtil.arithmeticMoveRight((byte) -112, 4,4))
-        .isEqualTo((byte)9);
+        assertThat(ByteUtil.arithmeticMoveRight((byte) -112, 4, 4))
+                .isEqualTo((byte) 9);
     }
 }
