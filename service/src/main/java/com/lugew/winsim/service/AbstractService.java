@@ -16,12 +16,13 @@ import java.util.List;
  */
 public abstract class AbstractService<T extends Entity<?>, I extends Mapper<T>> implements Service<T> {
 
+    @Autowired
     protected I mapper;
 
-    @Autowired
+  /*  @Autowired
     public void setMapper(I mapper) {
         this.mapper = mapper;
-    }
+    }*/
 
     private void preInsert(T entity) {
         entity.setCreator(getCurrentUserId());

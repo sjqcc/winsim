@@ -22,12 +22,13 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public abstract class AbstractController<T extends Entity<?>, I extends Service<T>> implements Controller<T> {
 
+    @Autowired
     protected I service;
 
-    @Autowired
+  /*  @Autowired
     public void setService(I service) {
         this.service = service;
-    }
+    }*/
 
     @Override
     @ApiOperation(value = "列表")

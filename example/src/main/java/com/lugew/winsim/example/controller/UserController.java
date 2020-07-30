@@ -1,6 +1,9 @@
 package com.lugew.winsim.example.controller;
 
 import com.lugew.winsim.controller.AbstractController;
+import com.lugew.winsim.example.annotation.FieldValidated;
+import com.lugew.winsim.example.annotation.FieldsValidated;
+import com.lugew.winsim.example.aspect.NotNullFieldValidator;
 import com.lugew.winsim.example.entity.User;
 import com.lugew.winsim.example.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class UserController extends AbstractController<User, UserService> {
     @PostMapping("test")
-    public ResponseEntity<?> test(@RequestBody User entity) {
+    public ResponseEntity<?> test(@RequestBody
+                                  @FieldsValidated(value = {
+                                          @FieldValidated(validator = NotNullFieldValidator.class, fields = {"username"})
+                                  })
+                                          User entity) {
         return ok(service.getOne(entity));
     }
 }
