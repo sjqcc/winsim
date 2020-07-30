@@ -29,12 +29,6 @@ public abstract class AbstractControllerSpecification {
     protected MockMvc mockMvc;
     protected boolean printable;
 
-
-/*    protected <T extends Entity<?>, S extends Service<T>, C extends AbstractController<T, S>> void setUp(C controller, S service) {
-        setUp(controller);
-        controller.setService(service);
-    }*/
-
     protected <T extends Entity<?>, S extends Service<T>, C extends AbstractController<T, S>> void setUp(C controller) {
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .build();
