@@ -47,8 +47,7 @@ public class ValidatedHandler {
                     }
                     fieldValidatorMap.get(field).add(validator);
                 } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException("cant get field" + fieldString + " in " + clazz.getName());
+                    throw new RuntimeException("field " + fieldString + " not exist in " + clazz.getName());
                 }
             }
         }

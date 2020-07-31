@@ -119,5 +119,12 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
                 .hasMessageContaining("cant be null");
     }
 
+    @Test
+    void givenValidatedWhenFieldNotExistThenError() {
+        Validated entity = new Validated();
+        assertThatThrownBy(() -> post("/validated/fieldNotExist", entity))
+                .hasMessageContaining("field nam not exist");
+    }
+
 
 }

@@ -60,6 +60,15 @@ public class ValidatedController {
         return ok();
     }
 
+    @PostMapping("fieldNotExist")
+    public ResponseEntity<?> fieldNotExist(@RequestBody
+                                           @Validated({
+                                                   @Valid(fields = {"nam"})
+                                           })
+                                                   com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
     protected ResponseEntity<?> ok() {
         return ok(null);
     }
