@@ -90,5 +90,21 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
                 .hasMessageContaining("password must be null");
     }
 
+    @Test
+    void givenSingleValidNameNotNullWhenNameNotNullThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        post("/validated/singleValidNameNotNull", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+    }
+
+    @Test
+    void givenSingleValidNameNotNullWhenNameNullThenError() {
+        Validated entity = new Validated();
+        assertThatThrownBy(() -> post("/validated/singleValidNameNotNull", entity))
+                .hasMessageContaining("name cant be null");
+
+    }
+
 
 }

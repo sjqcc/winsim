@@ -44,6 +44,12 @@ public class ValidatedController {
         return ok();
     }
 
+    @PostMapping("singleValidNameNotNull")
+    public ResponseEntity<?> singleValidNameNotNull(@RequestBody
+                                                    @Valid(fields = {"name"}) com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
     protected ResponseEntity<?> ok() {
         return ok(null);
     }
