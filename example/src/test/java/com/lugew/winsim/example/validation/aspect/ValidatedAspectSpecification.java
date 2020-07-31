@@ -3,7 +3,6 @@ package com.lugew.winsim.example.validation.aspect;
 import com.lugew.winsim.example.controller.AbstractMvcControllerSpecification;
 import com.lugew.winsim.example.controller.ValidatedController;
 import com.lugew.winsim.example.entity.Validated;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,9 +25,9 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
     @Autowired
     private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-
+    @Override
+    public MockMvc mockMvc() {
+        return mockMvc;
     }
 
     @Test
@@ -47,8 +46,49 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
 
     }
 
-    @Override
-    public MockMvc mockMvc() {
-        return mockMvc;
+    @Test
+    void givenNameNotNullAndPasswordNotNullWhenBothNotNullThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        entity.setPassword("123456");
+        post("/validated/nameAndPasswordNotNull", entity)
+                .andExpect(jsonMatcher("$.code", 0));
     }
+
+    @Test
+    void givenNameNotNullAndPasswordNotNullWhenBothNullThenError() {
+        Validated entity = new Validated();
+//        entity.setName("lugew");
+//        entity.setPassword("123456");
+        assertThatThrownBy(() -> post("/validated/nameAndPasswordNotNull", entity))
+                .hasMessageContaining("cant be null");
+    }
+
+    @Test
+    void givenNameNotNullAndPasswordNotNullWhenNameNotNullThenError() {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+//        entity.setPassword("123456");
+        assertThatThrownBy(() -> post("/validated/nameAndPasswordNotNull", entity))
+                .hasMessageContaining("password cant be null");
+    }
+
+    @Test
+    void givenNameNotNullAndPasswordNullWhenNormalThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        post("/validated/nameNotNullAndPasswordNull", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+    }
+
+    @Test
+    void givenNameNotNullAndPasswordNullWhenPasswordNotNullThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        entity.setPassword("123456");
+        assertThatThrownBy(() -> post("/validated/nameNotNullAndPasswordNull", entity))
+                .hasMessageContaining("password must be null");
+    }
+
+
 }

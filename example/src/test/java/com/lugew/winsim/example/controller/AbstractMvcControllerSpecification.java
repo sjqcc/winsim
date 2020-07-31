@@ -17,7 +17,6 @@ import org.springframework.util.MultiValueMap;
  */
 
 @Slf4j
-
 public abstract class AbstractMvcControllerSpecification {
 
 

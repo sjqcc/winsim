@@ -18,13 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("validated")
 public class ValidatedController {
     @PostMapping("nameNotNull")
-    public ResponseEntity<?> test(@RequestBody
-                                  @Validated({
-                                          @Valid(fields = {
-                                                  "name"
-                                          })
-                                  })
+    public ResponseEntity<?> test(@RequestBody @Validated(
+            {
+                    @Valid(
+                            fields = {
+                                    "name"
+                            }
+                    )
+            }
+    )
                                           com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+
+    @PostMapping("nameAndPasswordNotNull")
+    public ResponseEntity<?> nameAndPasswordNotNull(@RequestBody @Validated({@Valid(fields = {"name", "password"})})
+                                                            com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+    @PostMapping("nameNotNullAndPasswordNull")
+    public ResponseEntity<?> nameNotNullAndPasswordNull(@RequestBody @Validated({@Valid(fields = {"name"})})
+                                                                com.lugew.winsim.example.entity.Validated entity) {
         return ok();
     }
 

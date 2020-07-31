@@ -33,31 +33,6 @@ public class ValidatedHandler {
         validateFields(fieldValidatorMap, object);
     }
 
-    private void validateFields(Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap, Object object) {
-        for (Map.Entry<Field, Set<Class<? extends Validator>>> entry : fieldValidatorMap.entrySet()) {
-            Field field = entry.getKey();
-            Set<Class<? extends Validator>> validators = entry.getValue();
-            for (Class<? extends Validator> validator : validators) {
-                try {
-                    validator.newInstance().validate(field, object);
-                } catch (InstantiationException | IllegalAccessException e) {
-                    throw new RuntimeException("cant create new field validator:");
-                }
-            }
-        }
-    }
-
-    private void mapNotDeclaredFields(Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap, Class<?> clazz) {
-        Field[] fields = clazz.getFields();
-        for (Field field : fields) {
-            if (!fieldValidatorMap.containsKey(field)) {
-                fieldValidatorMap.put(field, new HashSet<Class<? extends Validator>>(1) {{
-                    add(Null.class);
-                }});
-            }
-        }
-    }
-
     private Map<Field, Set<Class<? extends Validator>>> mapDeclaredFields(Valid[] validArray, Class<?> clazz) {
         Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap = new HashMap<>();
         for (Valid valid : validArray) {
@@ -79,4 +54,31 @@ public class ValidatedHandler {
         }
         return fieldValidatorMap;
     }
+
+    private void mapNotDeclaredFields(Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap, Class<?> clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            if (!fieldValidatorMap.containsKey(field)) {
+                fieldValidatorMap.put(field, new HashSet<Class<? extends Validator>>(1) {{
+                    add(Null.class);
+                }});
+            }
+        }
+    }
+
+    private void validateFields(Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap, Object object) {
+        for (Map.Entry<Field, Set<Class<? extends Validator>>> entry : fieldValidatorMap.entrySet()) {
+            Field field = entry.getKey();
+            Set<Class<? extends Validator>> validators = entry.getValue();
+            for (Class<? extends Validator> validator : validators) {
+                try {
+                    validator.newInstance().validate(field, object);
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException("cant create new field validator:");
+                }
+            }
+        }
+    }
+
+
 }

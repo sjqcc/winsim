@@ -9,4 +9,5 @@ import lombok.Data;
 @Data
 public class Validated {
     private String name;
+    private String password;
 }
