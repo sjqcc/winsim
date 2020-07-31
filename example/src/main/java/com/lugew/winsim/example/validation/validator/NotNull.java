@@ -1,4 +1,4 @@
-package com.lugew.winsim.example.aspect;
+package com.lugew.winsim.example.validation.validator;
 
 import java.lang.reflect.Field;
 
@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
  * @author LuGew
  * @since 2020/7/30
  */
-public class NotNullFieldValidator extends AbstractFieldValidator {
+public class NotNull extends AbstractValidator {
 
     @Override
     public boolean validate(Field field, Object object) {
@@ -18,7 +18,7 @@ public class NotNullFieldValidator extends AbstractFieldValidator {
             e.printStackTrace();
         }
         if (null == value) {
-            throw new RuntimeException("value is null");
+            throw new RuntimeException(field.getName() + " cant be null");
         }
         return true;
     }
