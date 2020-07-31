@@ -1,5 +1,7 @@
 package com.lugew.winsim.example.validation.validator;
 
+import com.lugew.winsim.util.ObjectUtil;
+
 import java.lang.reflect.Field;
 
 /**
@@ -9,13 +11,9 @@ import java.lang.reflect.Field;
 public class Null extends AbstractValidator {
     @Override
     public boolean validate(Field field, Object object) {
-        field.setAccessible(true);
-        try {
-            if (field.get(object) != null) {
-                throw new RuntimeException(field.getName() + " must be null");
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        Object value = getFieldValue(field, object);
+        if (ObjectUtil.isNotNull(value)) {
+            throw new RuntimeException(field.getName() + " must be null");
         }
         return true;
     }

@@ -50,6 +50,16 @@ public class ValidatedController {
         return ok();
     }
 
+    @PostMapping("multiValidNameNotNullAndPasswordNotNull")
+    public ResponseEntity<?> multiValidNameNotNullAndPasswordNotNull(@RequestBody
+                                                                     @Validated({
+                                                                             @Valid(fields = {"name"}),
+                                                                             @Valid(fields = {"password"})
+                                                                     })
+                                                                             com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
     protected ResponseEntity<?> ok() {
         return ok(null);
     }

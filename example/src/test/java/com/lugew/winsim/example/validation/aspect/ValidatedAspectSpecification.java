@@ -100,7 +100,23 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
         Validated entity = new Validated();
         assertThatThrownBy(() -> post("/validated/singleValidNameNotNull", entity))
                 .hasMessageContaining("name cant be null");
+    }
 
+    @Test
+    void givenMultiValidNameNotNullAndPasswordNotNullWhenNormalThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        entity.setPassword("12345");
+        post("/validated/multiValidNameNotNullAndPasswordNotNull", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+
+    }
+
+    @Test
+    void givenMultiValidNameNotNullAndPasswordNotNullWhenBothNullThenError() {
+        Validated entity = new Validated();
+        assertThatThrownBy(() -> post("/validated/multiValidNameNotNullAndPasswordNotNull", entity))
+                .hasMessageContaining("cant be null");
     }
 
 
