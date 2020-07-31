@@ -19,7 +19,7 @@ public class NotEmpty extends AbstractValidator {
         if (ObjectUtil.isNull(value)) {
             throw new RuntimeException(field.getName() + " must not empty,but is null");
         }
-        if (StringUtil.isEmpty(value) || CollectionUtil.isEmpty(value)) {
+        if (StringUtil.isEmpty(value) && CollectionUtil.isEmpty(value)) {
             throw new RuntimeException(field.getName() + " must not empty,but is empty");
         }
         return true;

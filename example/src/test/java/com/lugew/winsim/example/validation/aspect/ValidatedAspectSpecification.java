@@ -126,5 +126,21 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
                 .hasMessageContaining("field nam not exist");
     }
 
+    @Test
+    void givenNameNotEmptyWhenNormalThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        post("/validated/nameNotEmpty", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+    }
+
+    @Test
+    void givenNameNotEmptyWhenNameEmptyThenError() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("");
+        assertThatThrownBy(() -> post("/validated/nameNotEmpty", entity))
+                .hasMessageContaining("name must not empty,but is empty");
+    }
+
 
 }
