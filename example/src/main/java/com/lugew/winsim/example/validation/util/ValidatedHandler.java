@@ -22,11 +22,11 @@ import java.util.Set;
 @UtilityClass
 @Slf4j
 public class ValidatedHandler {
-    public void handle(Validated validated, Object object) {
-        handle(validated.value(), object);
+    public void handle(Object object, Validated validated) {
+        handle(object, validated.value());
     }
 
-    public void handle(Valid[] validArray, Object object) {
+    public void handle(Object object, Valid... validArray) {
         Class<?> clazz = object.getClass();
         Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap = mapDeclaredFields(validArray, clazz);
         mapNotDeclaredFields(fieldValidatorMap, clazz);

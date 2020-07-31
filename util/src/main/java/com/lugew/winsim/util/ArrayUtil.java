@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 public class ArrayUtil {
 
     public boolean isEmpty(Object[] objects) {
-        return null != objects && objects.length > 0;
+        return null == objects || objects.length == 0;
     }
 
     public boolean isNotEmpty(Object[] objects) {

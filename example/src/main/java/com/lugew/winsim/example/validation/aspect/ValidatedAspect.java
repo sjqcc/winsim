@@ -51,9 +51,9 @@ public class ValidatedAspect {
                 for (Annotation annotation : argumentAnnotations) {
                     Class<? extends Annotation> annotationType = annotation.annotationType();
                     if (Validated.class.equals(annotationType)) {
-                        ValidatedHandler.handle((Validated) annotation, argument);
+                        ValidatedHandler.handle(argument, (Validated) annotation);
                     } else if (Valid.class.equals(annotationType)) {
-
+                        ValidatedHandler.handle(argument, (Valid) annotation);
                     }
                 }
             }
