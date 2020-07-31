@@ -1,4 +1,4 @@
-package com.lugew.winsim.example.aspect;
+package com.lugew.winsim.example.validation.validator;
 
 import java.lang.reflect.Field;
 
@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  * @author LuGew
  * @since 2020/7/30
  */
-public interface FieldValidator {
+public interface Validator {
 
     /**
      * 是否验证通过

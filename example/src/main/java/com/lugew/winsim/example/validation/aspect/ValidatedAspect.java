@@ -1,7 +1,7 @@
-package com.lugew.winsim.example.aspect;
+package com.lugew.winsim.example.validation.aspect;
 
-import com.lugew.winsim.example.annotation.FieldsValidated;
-import com.lugew.winsim.example.util.FieldsValidatedUtil;
+import com.lugew.winsim.example.validation.annotation.Validated;
+import com.lugew.winsim.example.validation.util.ValidatedHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,13 +14,16 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
+ * controller层切面
+ * 字段验证
+ *
  * @author LuGew
  * @since 2020/7/30
  */
 @Aspect
 @Slf4j
 @Component
-public class FieldValidatorAspect {
+public class ValidatedAspect {
     @Pointcut("execution(* com.lugew.winsim.example.controller..*.*(..))")
     public void pointcut() {
     }
@@ -37,8 +40,8 @@ public class FieldValidatorAspect {
             Annotation[] argumentAnnotations = annotations[i];
             if (null != argumentAnnotations) {
                 for (Annotation annotation : argumentAnnotations) {
-                    if (FieldsValidated.class.equals(annotation.annotationType())) {
-                        FieldsValidatedUtil.handle((FieldsValidated) annotation, argument);
+                    if (Validated.class.equals(annotation.annotationType())) {
+                        ValidatedHandler.handle((Validated) annotation, argument);
                     }
                 }
             }
