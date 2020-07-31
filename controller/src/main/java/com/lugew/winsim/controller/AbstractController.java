@@ -25,11 +25,6 @@ public abstract class AbstractController<T extends Entity<?>, I extends Service<
     @Autowired
     protected I service;
 
-  /*  @Autowired
-    public void setService(I service) {
-        this.service = service;
-    }*/
-
     @Override
     @ApiOperation(value = "列表")
     @PostMapping(value = "/getList")

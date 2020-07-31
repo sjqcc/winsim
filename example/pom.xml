@@ -6,7 +6,6 @@
         <groupId>com.lugew.winsim</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.1-RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>example</artifactId>
     <version>1.0.1-RELEASE</version>

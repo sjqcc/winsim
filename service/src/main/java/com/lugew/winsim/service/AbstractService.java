@@ -19,11 +19,6 @@ public abstract class AbstractService<T extends Entity<?>, I extends Mapper<T>> 
     @Autowired
     protected I mapper;
 
-  /*  @Autowired
-    public void setMapper(I mapper) {
-        this.mapper = mapper;
-    }*/
-
     private void preInsert(T entity) {
         entity.setCreator(getCurrentUserId());
         entity.setCreateDateTime(LocalDateTimeUtil.now());
