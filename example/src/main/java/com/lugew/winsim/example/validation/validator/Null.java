@@ -9,6 +9,14 @@ import java.lang.reflect.Field;
 public class Null extends AbstractValidator {
     @Override
     public boolean validate(Field field, Object object) {
-        return super.validate(field, object);
+        field.setAccessible(true);
+        try {
+            if (field.get(object) != null) {
+                throw new RuntimeException(field.getName() + " must be null");
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }

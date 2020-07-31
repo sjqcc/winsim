@@ -12,8 +12,7 @@ import java.lang.reflect.Field;
 public abstract class AbstractValidator implements Validator {
     @Override
     public boolean validate(Field field, Object object) {
-
-        return null == object;
+        return true;
     }
 
 }
