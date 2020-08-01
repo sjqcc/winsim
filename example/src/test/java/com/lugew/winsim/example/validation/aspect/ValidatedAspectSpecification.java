@@ -58,8 +58,6 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
     @Test
     void givenNameNotNullAndPasswordNotNullWhenBothNullThenError() {
         Validated entity = new Validated();
-//        entity.setName("lugew");
-//        entity.setPassword("123456");
         assertThatThrownBy(() -> post("/validated/nameAndPasswordNotNull", entity))
                 .hasMessageContaining("cant be null");
     }
@@ -68,7 +66,6 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
     void givenNameNotNullAndPasswordNotNullWhenNameNotNullThenError() {
         Validated entity = new Validated();
         entity.setName("lugew");
-//        entity.setPassword("123456");
         assertThatThrownBy(() -> post("/validated/nameAndPasswordNotNull", entity))
                 .hasMessageContaining("password cant be null");
     }
@@ -103,7 +100,46 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
         Validated entity = new Validated();
         assertThatThrownBy(() -> post("/validated/singleValidNameNotNull", entity))
                 .hasMessageContaining("name cant be null");
+    }
 
+    @Test
+    void givenMultiValidNameNotNullAndPasswordNotNullWhenNormalThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        entity.setPassword("12345");
+        post("/validated/multiValidNameNotNullAndPasswordNotNull", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+
+    }
+
+    @Test
+    void givenMultiValidNameNotNullAndPasswordNotNullWhenBothNullThenError() {
+        Validated entity = new Validated();
+        assertThatThrownBy(() -> post("/validated/multiValidNameNotNullAndPasswordNotNull", entity))
+                .hasMessageContaining("cant be null");
+    }
+
+    @Test
+    void givenValidatedWhenFieldNotExistThenError() {
+        Validated entity = new Validated();
+        assertThatThrownBy(() -> post("/validated/fieldNotExist", entity))
+                .hasMessageContaining("field nam not exist");
+    }
+
+    @Test
+    void givenNameNotEmptyWhenNormalThenOK() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("lugew");
+        post("/validated/nameNotEmpty", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+    }
+
+    @Test
+    void givenNameNotEmptyWhenNameEmptyThenError() throws Exception {
+        Validated entity = new Validated();
+        entity.setName("");
+        assertThatThrownBy(() -> post("/validated/nameNotEmpty", entity))
+                .hasMessageContaining("name must not empty,but is empty");
     }
 
 

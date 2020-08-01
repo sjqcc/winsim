@@ -1,7 +1,9 @@
 package com.lugew.winsim.example.validation.aspect;
 
+import com.lugew.winsim.example.validation.annotation.Valid;
 import com.lugew.winsim.example.validation.annotation.Validated;
 import com.lugew.winsim.example.validation.util.ValidatedHandler;
+import com.lugew.winsim.util.ArrayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,18 +32,28 @@ public class ValidatedAspect {
 
     @Before("pointcut()")
     public void before(JoinPoint joinPoint) {
-        log.info("field filter before");
         Object[] arguments = joinPoint.getArgs();
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method method = methodSignature.getMethod();
-        Annotation[][] annotations = method.getParameterAnnotations();
+
+        if (ArrayUtil.isNotEmpty(arguments)) {
+            MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+            Method method = methodSignature.getMethod();
+            Annotation[][] annotations = method.getParameterAnnotations();
+            handleParameterAnnotations(arguments, annotations);
+        }
+
+    }
+
+    private void handleParameterAnnotations(Object[] arguments, Annotation[][] annotations) {
         for (int i = 0; i < annotations.length; i++) {
             Object argument = arguments[i];
             Annotation[] argumentAnnotations = annotations[i];
-            if (null != argumentAnnotations) {
+            if (ArrayUtil.isNotEmpty(argumentAnnotations)) {
                 for (Annotation annotation : argumentAnnotations) {
-                    if (Validated.class.equals(annotation.annotationType())) {
-                        ValidatedHandler.handle((Validated) annotation, argument);
+                    Class<? extends Annotation> annotationType = annotation.annotationType();
+                    if (Validated.class.equals(annotationType)) {
+                        ValidatedHandler.handle(argument, (Validated) annotation);
+                    } else if (Valid.class.equals(annotationType)) {
+                        ValidatedHandler.handle(argument, (Valid) annotation);
                     }
                 }
             }

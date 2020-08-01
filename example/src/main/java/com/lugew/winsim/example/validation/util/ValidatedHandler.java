@@ -22,11 +22,11 @@ import java.util.Set;
 @UtilityClass
 @Slf4j
 public class ValidatedHandler {
-    public void handle(Validated validated, Object object) {
-        handle(validated.value(), object);
+    public void handle(Object object, Validated validated) {
+        handle(object, validated.value());
     }
 
-    public void handle(Valid[] validArray, Object object) {
+    public void handle(Object object, Valid... validArray) {
         Class<?> clazz = object.getClass();
         Map<Field, Set<Class<? extends Validator>>> fieldValidatorMap = mapDeclaredFields(validArray, clazz);
         mapNotDeclaredFields(fieldValidatorMap, clazz);
@@ -47,8 +47,7 @@ public class ValidatedHandler {
                     }
                     fieldValidatorMap.get(field).add(validator);
                 } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException("cant get field" + fieldString + " in " + clazz.getName());
+                    throw new RuntimeException("field " + fieldString + " not exist in " + clazz.getName());
                 }
             }
         }

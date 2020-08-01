@@ -4,6 +4,7 @@ import com.lugew.winsim.controller.response.GeneralResponse;
 import com.lugew.winsim.controller.response.Response;
 import com.lugew.winsim.example.validation.annotation.Valid;
 import com.lugew.winsim.example.validation.annotation.Validated;
+import com.lugew.winsim.example.validation.validator.NotEmpty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,6 +48,34 @@ public class ValidatedController {
     @PostMapping("singleValidNameNotNull")
     public ResponseEntity<?> singleValidNameNotNull(@RequestBody
                                                     @Valid(fields = {"name"}) com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+    @PostMapping("multiValidNameNotNullAndPasswordNotNull")
+    public ResponseEntity<?> multiValidNameNotNullAndPasswordNotNull(@RequestBody
+                                                                     @Validated({
+                                                                             @Valid(fields = {"name"}),
+                                                                             @Valid(fields = {"password"})
+                                                                     })
+                                                                             com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+    @PostMapping("fieldNotExist")
+    public ResponseEntity<?> fieldNotExist(@RequestBody
+                                           @Validated({
+                                                   @Valid(fields = {"nam"})
+                                           })
+                                                   com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+    @PostMapping("nameNotEmpty")
+    public ResponseEntity<?> nameNotEmpty(@RequestBody
+
+                                          @Valid(fields = {"name"}, validator = NotEmpty.class)
+
+                                                  com.lugew.winsim.example.entity.Validated entity) {
         return ok();
     }
 
