@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.lugew.winsim</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.1-RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
     </parent>
     <artifactId>example</artifactId>
     <name>example</name>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.lugew.winsim</groupId>
             <artifactId>winsim-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${winsim.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
