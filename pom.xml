@@ -41,6 +41,7 @@
         <guava.version>23.0</guava.version>
         <freemaker.version>2.3.30</freemaker.version>
         <hutool.all>5.3.7</hutool.all>
+        <versions.version>2.7</versions.version>
     </properties>
     <licenses>
         <license>
@@ -183,6 +184,14 @@
             </plugins>
 
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions.version}</version>
+            </plugin>
+        </plugins>
+
     </build>
     <profiles>
         <profile>
