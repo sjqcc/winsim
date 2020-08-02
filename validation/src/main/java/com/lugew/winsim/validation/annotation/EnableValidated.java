@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
+ * 开启字段验证
+ *
  * @author LuGew
  * @since 2020/8/2
  */

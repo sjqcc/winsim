@@ -6,6 +6,8 @@ import com.lugew.winsim.util.ObjectUtil;
 import java.lang.reflect.Field;
 
 /**
+ * 空验证器
+ *
  * @author LuGew
  * @since 2020/7/30
  */

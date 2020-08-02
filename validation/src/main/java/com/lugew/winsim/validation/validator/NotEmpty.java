@@ -8,7 +8,7 @@ import com.lugew.winsim.util.StringUtil;
 import java.lang.reflect.Field;
 
 /**
- * String/Collections包含元素不为空
+ * String/Collections包含元素不为空的验证器
  *
  * @author LuGew
  * @since 2020/7/31

@@ -3,7 +3,7 @@ package com.lugew.winsim.validation.aspect;
 import com.lugew.winsim.util.ArrayUtil;
 import com.lugew.winsim.validation.annotation.Valid;
 import com.lugew.winsim.validation.annotation.Validated;
-import com.lugew.winsim.validation.util.ValidatedHandler;
+import com.lugew.winsim.validation.handler.ValidatedHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,8 +15,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * controller层切面
- * 字段验证
+ * 字段验证切面
  *
  * @author LuGew
  * @since 2020/7/30
@@ -25,7 +24,9 @@ import java.lang.reflect.Method;
 @Slf4j
 public class ValidatedAspect {
 
-
+    /**
+     * 任何方法参数上有{@link Validated}和{@link Valid}都被可能被环绕。
+     */
     @Pointcut(
 
             "execution(* *(.., @com.lugew.winsim.validation.annotation.Validated (*), ..))"
@@ -35,10 +36,15 @@ public class ValidatedAspect {
     public void pointcut() {
     }
 
+    /**
+     * 处理被{@link Validated}和{@link Valid}注解标注参数
+     * 的方法。
+     *
+     * @param joinPoint 切点
+     */
     @Before("pointcut()")
     public void before(JoinPoint joinPoint) {
         Object[] arguments = joinPoint.getArgs();
-
         if (ArrayUtil.isNotEmpty(arguments)) {
             MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
             Method method = methodSignature.getMethod();
@@ -48,6 +54,12 @@ public class ValidatedAspect {
 
     }
 
+    /**
+     * 处理参数
+     *
+     * @param arguments   参数数组
+     * @param annotations 参数注解二维数组
+     */
     private void handleParameterAnnotations(Object[] arguments, Annotation[][] annotations) {
         for (int i = 0; i < annotations.length; i++) {
             Object argument = arguments[i];

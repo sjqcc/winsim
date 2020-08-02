@@ -1,4 +1,4 @@
-package com.lugew.winsim.validation.util;
+package com.lugew.winsim.validation.handler;
 
 import com.lugew.winsim.validation.annotation.Valid;
 import com.lugew.winsim.validation.annotation.Validated;
@@ -15,6 +15,7 @@ import java.util.Set;
 
 /**
  * 字段验证器的处理器
+ * 未进行限制的字段必须为空
  *
  * @author LuGew
  * @since 2020/7/30
