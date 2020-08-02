@@ -3,6 +3,7 @@ package com.lugew.winsim.example.validation.aspect;
 import com.lugew.winsim.example.controller.AbstractMvcControllerSpecification;
 import com.lugew.winsim.example.controller.ValidatedController;
 import com.lugew.winsim.example.entity.Validated;
+import com.lugew.winsim.validation.annotation.EnableValidated;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,8 +18,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
  * @author LuGew
  * @since 2020/7/30
  */
-@WebMvcTest({ValidatedController.class, ValidatedAspect.class})
+@WebMvcTest({ValidatedController.class})
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableValidated
 class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
     @Autowired
     ValidatedController controller;

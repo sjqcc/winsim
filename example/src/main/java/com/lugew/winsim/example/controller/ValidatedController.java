@@ -2,14 +2,15 @@ package com.lugew.winsim.example.controller;
 
 import com.lugew.winsim.controller.response.GeneralResponse;
 import com.lugew.winsim.controller.response.Response;
-import com.lugew.winsim.example.validation.annotation.Valid;
-import com.lugew.winsim.example.validation.annotation.Validated;
-import com.lugew.winsim.example.validation.validator.NotEmpty;
+import com.lugew.winsim.validation.annotation.Valid;
+import com.lugew.winsim.validation.annotation.Validated;
+import com.lugew.winsim.validation.validator.NotEmpty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * @author LuGew

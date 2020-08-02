@@ -8,14 +8,18 @@
         <version>1.0.2-RELEASE</version>
     </parent>
     <artifactId>winsim-starter</artifactId>
-    <version>1.0.2-RELEASE</version>
     <name>winsim-starter</name>
     <description>winsim-starter</description>
     <dependencies>
         <dependency>
             <groupId>com.lugew.winsim</groupId>
             <artifactId>controller</artifactId>
-            <version>1.0.2-RELEASE</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lugew.winsim</groupId>
+            <artifactId>validation</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

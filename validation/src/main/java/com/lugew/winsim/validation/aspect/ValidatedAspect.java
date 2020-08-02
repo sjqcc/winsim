@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -24,9 +23,15 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Slf4j
-@Component
 public class ValidatedAspect {
-    @Pointcut("execution(* com.lugew.winsim.example.controller..*.*(..))")
+
+
+    @Pointcut(
+
+            "execution(* *(.., @com.lugew.winsim.validation.annotation.Validated (*), ..))"
+                    + "||" +
+                    "execution(* *(.., @com.lugew.winsim.validation.annotation.Valid (*), ..))"
+    )
     public void pointcut() {
     }
 

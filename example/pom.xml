@@ -42,7 +42,7 @@
         <freemaker.version>2.3.30</freemaker.version>
         <mybatis.typehandlers.jsr>1.0.2</mybatis.typehandlers.jsr>
         <hutool.all>5.3.7</hutool.all>
-        <winsim.version>1.0.1-RELEASE</winsim.version>
+        <winsim.version>1.0.2-RELEASE</winsim.version>
         <knife4j.version>2.0.4</knife4j.version>
         <h2.version>1.4.200</h2.version>
         <email.version>1.6.0</email.version>
