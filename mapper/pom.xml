@@ -8,7 +8,6 @@
         <version>1.0.1-RELEASE</version>
     </parent>
     <artifactId>mapper</artifactId>
-    <version>1.0.1-RELEASE</version>
     <name>mapper</name>
     <description>mapper</description>
 
@@ -17,7 +16,7 @@
         <dependency>
             <groupId>com.lugew.winsim</groupId>
             <artifactId>entity</artifactId>
-            <version>1.0.0-RELEASE</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
