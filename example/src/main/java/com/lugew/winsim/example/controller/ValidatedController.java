@@ -4,6 +4,7 @@ import com.lugew.winsim.controller.response.GeneralResponse;
 import com.lugew.winsim.controller.response.Response;
 import com.lugew.winsim.validation.annotation.Valid;
 import com.lugew.winsim.validation.annotation.Validated;
+import com.lugew.winsim.validation.validator.Length;
 import com.lugew.winsim.validation.validator.NotEmpty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,10 +74,15 @@ public class ValidatedController {
 
     @PostMapping("nameNotEmpty")
     public ResponseEntity<?> nameNotEmpty(@RequestBody
-
                                           @Valid(fields = {"name"}, validator = NotEmpty.class)
-
                                                   com.lugew.winsim.example.entity.Validated entity) {
+        return ok();
+    }
+
+    @PostMapping("nameLengthIs5")
+    public ResponseEntity<?> nameLengthIs5(@RequestBody
+                                           @Valid(fields = {"name"}, validator = Length.class)
+                                                   com.lugew.winsim.example.entity.Validated entity) {
         return ok();
     }
 

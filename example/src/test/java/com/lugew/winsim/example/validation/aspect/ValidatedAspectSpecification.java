@@ -144,5 +144,13 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
                 .hasMessageContaining("name must not empty,but is empty");
     }
 
+    @Test
+    void givenNameLengthIs5WhenNameLengthIs5ThenOK() throws Exception {
+
+        Validated entity = new Validated();
+        entity.setName("");
+        post("/validated/nameLengthIs5", entity)
+                .andExpect(jsonMatcher("$.code", 0));
+    }
 
 }
