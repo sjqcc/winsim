@@ -7,21 +7,20 @@
         <artifactId>parent</artifactId>
         <version>1.0.2-RELEASE</version>
     </parent>
-    <artifactId>code-generator</artifactId>
-    <name>code-generator</name>
-    <description>代码生成</description>
+    <artifactId>validation</artifactId>
+    <name>validation</name>
+    <description>validation for restful controller entity</description>
+
     <dependencies>
         <dependency>
+            <groupId>com.lugew.winsim</groupId>
+            <artifactId>util</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
     </dependencies>
+
 </project>
