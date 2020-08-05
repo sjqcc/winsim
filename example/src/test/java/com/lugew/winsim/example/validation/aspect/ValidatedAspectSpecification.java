@@ -125,7 +125,7 @@ class ValidatedAspectSpecification extends AbstractMvcControllerSpecification {
     void givenValidatedWhenFieldNotExistThenError() {
         Validated entity = new Validated();
         assertThatThrownBy(() -> post("/validated/fieldNotExist", entity))
-                .hasMessageContaining("field nam not exist");
+                .hasMessageContaining("field:nam not exist");
     }
 
     @Test
