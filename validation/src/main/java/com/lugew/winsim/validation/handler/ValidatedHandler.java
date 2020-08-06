@@ -1,5 +1,6 @@
 package com.lugew.winsim.validation.handler;
 
+import com.lugew.winsim.util.ReflectionUtil;
 import com.lugew.winsim.validation.annotation.Valid;
 import com.lugew.winsim.validation.annotation.Validated;
 import com.lugew.winsim.validation.validator.Null;
@@ -41,15 +42,11 @@ public class ValidatedHandler {
             Class<? extends Validator> validator = valid.validator();
 
             for (String fieldString : fields) {
-                try {
-                    Field field = clazz.getDeclaredField(fieldString);
-                    if (!fieldValidatorMap.containsKey(field)) {
-                        fieldValidatorMap.put(field, new HashSet<>());
-                    }
-                    fieldValidatorMap.get(field).add(validator);
-                } catch (NoSuchFieldException e) {
-                    throw new RuntimeException("field " + fieldString + " not exist in " + clazz.getName());
+                Field field = ReflectionUtil.getField(clazz, fieldString);
+                if (!fieldValidatorMap.containsKey(field)) {
+                    fieldValidatorMap.put(field, new HashSet<>());
                 }
+                fieldValidatorMap.get(field).add(validator);
             }
         }
         return fieldValidatorMap;
